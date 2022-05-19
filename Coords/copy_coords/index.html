@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+
+<html>
+    <head>
+        <title>Copy Coords by Sasinosoft Games</title>
+    </head>
+
+    <body>
+        <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" 
+                integrity="sha256-4+XzXVhsDmqanXGHaHvgh1gMQKX40OUvDEBTu8JcmNs=" 
+                crossorigin="anonymous">
+        </script>
+
+        <script>
+            window.addEventListener("message", handleNuiMessages);
+
+            function handleNuiMessages(event) {
+                var eventName = event.data.type;
+                if (eventName === 'copyCoords') {
+                    var x = Number((event.data.x).toFixed(4));
+                    var y = Number((event.data.y).toFixed(4));
+                    var z = Number((event.data.z).toFixed(4));
+                    var str = "{ " + x + ", " + y + ", " + z + " }";
+                    console.log('Copied:' + str)
+                    copyTextToClipboard(str);
+                }
+                else if (eventName === 'copyCoordsAndHeading') {
+                    var x = Number((event.data.x).toFixed(4));
+                    var y = Number((event.data.y).toFixed(4));
+                    var z = Number((event.data.z).toFixed(4));
+                    var h = Number((event.data.h).toFixed(4));
+                    var str = "{ " + x + ", " + y + ", " + z + ", " + h + " }";
+                    console.log('Copied:' + str)
+                    copyTextToClipboard(str);
+                }
+            }
+
+            function copyTextToClipboard(text) {
+                var copyFrom = $('<textarea/>');
+                copyFrom.text(text);
+                $('body').append(copyFrom);
+                copyFrom.select();
+                document.execCommand('copy');
+                copyFrom.remove();
+            }
+        </script>
+    </body>
+</html>

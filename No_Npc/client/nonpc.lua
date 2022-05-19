@@ -1,0 +1,15 @@
+CreateThread(function()
+    for i = 1, 15 do EnableDispatchService(i, false) end
+    SetRandomBoats(false)
+    SetGarbageTrucks(false)
+    SetRandomTrains(false)
+    SetCreateRandomCops(false)
+    SetCreateRandomCopsOnScenarios(false)
+    SetCreateRandomCopsNotOnScenarios(false)
+    SetDispatchCopsForPlayer(PlayerId(), false)
+    SetPedPopulationBudget(0.0)
+    SetNumberOfParkedVehicles(0.0)
+    SetVehiclePopulationBudget(0.0)
+    DistantCopCarSirens(false)
+    DisableVehicleDistantlights(true) -- fixes distant ghost cars from appearing
+end)
